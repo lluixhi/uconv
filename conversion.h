@@ -1,0 +1,2 @@
+void doConversion();
+void addConversion();
