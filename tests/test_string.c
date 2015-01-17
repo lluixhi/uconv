@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../strings.h"
+#include "../lib/strings.h"
 
 #define BUFSIZE 100
 #define EXPRESSIZE 10

@@ -1,7 +1,9 @@
 #include <stdlib.h>
 #include "squeue.h"
 
-void* pop_SQ(SQueue* Line) {
+void*
+pop_SQ(SQueue* Line)
+{
     if(Line->LSize) {
         void* temp = Line->OP[Line->FPos];
         if(Line->FPos == Line->PSize - 1) {
@@ -15,7 +17,9 @@ void* pop_SQ(SQueue* Line) {
     return NULL;
 }
 
-int push_SQ(SQueue* Line, void* val) {
+int
+push_SQ(SQueue* Line, void* val)
+{
     if(Line->LSize != Line->PSize) {
         Line->OP[Line->BPos] = val;
         if(Line->BPos == Line->PSize - 1) {
@@ -29,7 +33,9 @@ int push_SQ(SQueue* Line, void* val) {
     return EXIT_FAILURE;
 }
 
-SQueue* make_SQ(int size) {
+SQueue*
+make_SQ(int size)
+{
     SQueue* Line = malloc(sizeof(SQueue));
     Line->OP = malloc(size * sizeof(void*));
     Line->FPos = 0;
@@ -39,7 +45,9 @@ SQueue* make_SQ(int size) {
     return Line;
 }
 
-void break_SQ(SQueue* Line) {
+void
+break_SQ(SQueue* Line)
+{
     free(Line->OP);
     free(Line);
     return;

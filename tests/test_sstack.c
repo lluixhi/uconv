@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "../data/sstack.h"
+#include "../lib/data/sstack.h"
 
 int main() {
     SStack* Test2 = make_SS(3);

@@ -1,7 +1,9 @@
 #include <stdlib.h>
 #include "sstack.h"
 
-void* pop_SS(SStack* Corn) {
+void*
+pop_SS(SStack* Corn)
+{
     if(Corn->LSize) {
         Corn->LSize--;
         void* temp = Corn->Top[Corn->LSize];
@@ -10,7 +12,9 @@ void* pop_SS(SStack* Corn) {
     return NULL;
 }
 
-int push_SS(SStack* Corn, void* val) {
+int
+push_SS(SStack* Corn, void* val)
+{
     if(Corn->LSize != Corn->PSize) {
         Corn->Top[Corn->LSize] = val;
         Corn->LSize++;
@@ -19,7 +23,9 @@ int push_SS(SStack* Corn, void* val) {
     return EXIT_FAILURE;
 }
 
-SStack* make_SS(int size) {
+SStack*
+make_SS(int size)
+{
     SStack* Popcorn = malloc(sizeof(SStack));
     Popcorn->Top = malloc(size * sizeof(void*));
     Popcorn->PSize = size;
@@ -27,7 +33,9 @@ SStack* make_SS(int size) {
     return Popcorn;
 }
 
-void break_SS(SStack* Popcorn) {
+void
+break_SS(SStack* Popcorn)
+{
     while(Popcorn->LSize) {
         pop_SS(Popcorn);
     }

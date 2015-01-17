@@ -3,7 +3,9 @@
 #include <ctype.h>
 
 // Returns index of first char which is not whitespace after startindex. If it's all whitespace, return -1
-int impCharInd(const char input[], const unsigned long startIndex) {
+int
+impCharInd(const char input[], const unsigned long startIndex)
+{
     unsigned long i;
     for(i = startIndex; i != strlen(input); ++i) {
         if(!input[i])
@@ -15,7 +17,9 @@ int impCharInd(const char input[], const unsigned long startIndex) {
 }
 
 // Convert User char[] to char*[] based on whitespace
-void whitespaceSplit(const char input[], char** exprbuffer, const unsigned long exprBuffLen) {
+void
+whitespaceSplit(const char input[], char** exprbuffer, const unsigned long exprBuffLen)
+{
     // Loop counter, substring length, and counter for exprbuffer.
     int i, j = 0;
     unsigned long k = 0;

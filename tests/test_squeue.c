@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "../data/squeue.h"
+#include "../lib/data/squeue.h"
 
 int main() {
     SQueue* Test2 = make_SQ(3);
