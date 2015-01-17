@@ -1,1 +1,1 @@
-char* fileAsString(const char* filepath);
+char* fileAsString(FILE* filepath);

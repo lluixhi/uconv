@@ -2,11 +2,10 @@
 #include <stdlib.h>
 
 char*
-fileAsString(const char* filepath)
+fileAsString(FILE* file)
 {
     unsigned long length;
     char* contents = NULL;
-    FILE* file = fopen(filepath, "r");
 
     if (file) {
         fseek(file, 0, SEEK_END);

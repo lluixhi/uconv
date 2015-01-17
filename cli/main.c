@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../lib/strings.h"
+#include "../lib/file.h"
+#include "../lib/data/link.h"
 #include "../conversion.h"
 
 #define BUFSIZE 100
@@ -10,21 +12,57 @@ char entry[BUFSIZE];
 
 int main(const int argc, const char** argv ) {
 
+    /*
+     * First, load the configuration file into RAM
+     */
+    FILE* confFile = fopen("config","r");
+    char* confFileContents = fileAsString(confFile);
+
+    /*
+     * Second, translate file into the linked list/tree format
+     */
+
+
+
+    /*
+     * Third, enter the main loop.
+     */
     while(1) {
 whileStart:
         printf(">> ");
-        fgets(entry, BUFSIZE, stdin);
-        if(impCharInd(entry, 0) == -1)
-            goto whileStart;
-        if(entry[impCharInd(entry, 0)] == 'q')
-            break;
-        if(entry[impCharInd(entry, 0)] == 'c')
-            doConversion();
-        if(entry[impCharInd(entry, 0)] == 'a')
-            addConversion();
-        if(entry[impCharInd(entry, 0)] == 'h' || entry[impCharInd(entry, 0)] == '?')
-            printHelp();
+        if(fgets(entry, BUFSIZE, stdin)) {
+            if(impCharInd(entry, 0) == -1)
+                goto whileStart;
+            switch(entry[impCharInd(entry, 0)]) {
+                case 'q':
+                    goto exitLoop;
+                case 'c':
+                    doConversion();
+                    break;
+                case 'a':
+                    addConversion();
+                    break;
+                case 'h':
+                    printHelp();
+                    break;
+                case '?':
+                    printHelp();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
+exitLoop:
+
+    /*
+     * Fourth, convert the linked list structure in RAM into a string.
+     */
+
+    /*
+     * Fifth, write the string to the config file.
+     */
+
     return 0;
 }
 
@@ -37,7 +75,7 @@ void printHelp() {
     printf("a(dd):\
             \tWrite a, then the conversion to add it to the conversion dictionary.\n\
             \t\tExample:\n\
-            \t\t >>a m ft 3.281\n\n");
+            \t\t>> a m ft 3.281\n\n");
     printf("h(elp):\
             \tPrints help.\n\n");
     printf("q(uit):\
