@@ -1,0 +1,25 @@
+--Length--
+Meters
+Feet
+* 3.280839895013123
+
+Miles
+Feet
+* 5280
+
+Kilometers
+Meters
+* 1000
+
+--Temperature--
+Celsius
+Fahrenheit
+* 1.8 + 32
+
+Celsius
+Kelvin
++ 273.15
+
+Fahrenheit
+Rankine
++ 459.67

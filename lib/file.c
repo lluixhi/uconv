@@ -12,8 +12,7 @@ fileAsString(FILE* file)
         length = ftell(file);
         fseek(file, 0, SEEK_SET);
         contents = malloc(length + 1);
-        if (contents && length == fread(contents, 1, length, file))
-            printf("Successful\n");
+        if (contents && length == fread(contents, 1, length, file)); // Todo, implement logging
         fclose(file);
         contents[length] = 0;
     }

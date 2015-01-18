@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
+
 #include "../lib/strings.h"
 
 #define BUFSIZE 100
@@ -14,9 +16,9 @@ int main(const int argc, const char** argv ) {
 whileStart:
         printf(">> ");
         fgets(entry, BUFSIZE, stdin);
-        if(impCharInd(entry, 0) == -1)
+        if(impCharInd(entry, &isspace, 0) == -1)
             goto whileStart;
-        if(entry[impCharInd(entry, 0)] == 'q') {
+        if(entry[impCharInd(entry, &isspace, 0)] == 'q') {
             free(expressionbuffer);
             break;
         }

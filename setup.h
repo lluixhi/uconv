@@ -1,0 +1,1 @@
+int loadConf(char* fileContents);

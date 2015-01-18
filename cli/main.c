@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
+
 #include "../lib/strings.h"
 #include "../lib/file.h"
-#include "../lib/data/link.h"
+
+#include "../setup.h"
 #include "../conversion.h"
 
 #define BUFSIZE 100
@@ -11,18 +14,17 @@ void printHelp();
 char entry[BUFSIZE];
 
 int main(const int argc, const char** argv ) {
-
     /*
      * First, load the configuration file into RAM
      */
-    FILE* confFile = fopen("config","r");
+    FILE* confFile = fopen("config","r+"); // Todo -- support config file in users' directory.
     char* confFileContents = fileAsString(confFile);
 
     /*
-     * Second, translate file into the linked list/tree format
+     * Second, translate file into the linked list/tree format in RAM.
      */
-
-
+    loadConf(confFileContents);
+    free(confFileContents);
 
     /*
      * Third, enter the main loop.
@@ -31,9 +33,9 @@ int main(const int argc, const char** argv ) {
 whileStart:
         printf(">> ");
         if(fgets(entry, BUFSIZE, stdin)) {
-            if(impCharInd(entry, 0) == -1)
+            if(impCharInd(entry, &isspace, 0) == -1)
                 goto whileStart;
-            switch(entry[impCharInd(entry, 0)]) {
+            switch(entry[impCharInd(entry, &isspace, 0)]) {
                 case 'q':
                     goto exitLoop;
                 case 'c':

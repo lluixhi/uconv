@@ -9,6 +9,9 @@ stuff:
 shared: stuff
 	${CC} ${CFLAGS} -shared strings.o file.o data/squeue.o data/sstack.o -o libstuff.so
 
+static: stuff
+	${AR} rcs libstuff.a strings.o file.o data/squeue.o data/sstack.o
+
 clean:
 	$(MAKE) cleanobj
 	$(MAKE) cleanso
