@@ -3,6 +3,7 @@
 #include <ctype.h>
 
 #include "../lib/strings.h"
+#include "../lib/data/link.h"
 #include "../lib/file.h"
 
 #include "../setup.h"
