@@ -5,13 +5,16 @@ all:
 	${CC} ${CFLAGS} -o test_sstack test_sstack.o -L../lib -lstuff
 	${CC} ${CFLAGS} -c test_string.c
 	${CC} ${CFLAGS} -o test_string test_string.o -L../lib -lstuff
+	${CC} ${CFLAGS} -c test_file_to_string.c
+	${CC} ${CFLAGS} -o test_file_to_string test_file_to_string.o -L../lib -lstuff
+
 
 clean:
 	$(MAKE) cleanobj
 	$(MAKE) cleanexe
 
 cleanobj:
-	-rm -f test_string.o test_sstack.o test_squeue.o
+	-rm -f test_file_to_string.o test_string.o test_sstack.o test_squeue.o
 
 cleanexe:
-	-rm -f test_string test_sstack test_squeue
+	-rm -f test_file_to_string test_string test_sstack test_squeue

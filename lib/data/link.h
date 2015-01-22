@@ -4,5 +4,6 @@ typedef struct Link{
     char* name2;
     char** expression;
     char exprLength;
-    struct Link *Next;
+    struct Link *Next1;
+    struct Link *Next2;
 } Link;
