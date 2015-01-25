@@ -24,13 +24,8 @@ whileStart:
         }
         whitespaceSplit(entry, expressionbuffer, EXPRESSIZE);
         int i;
-        for(i = 0; i < EXPRESSIZE; i++) {
-            if(expressionbuffer[i]) {
-                printf("%s\n", expressionbuffer[i]);
-                free(expressionbuffer[i]);
-            }
-            else break;
-        }
+        for(i = 0; expressionbuffer[i]; i++)
+            printf("%s\n", expressionbuffer[i]);
         free(expressionbuffer);
     }
     return 0;

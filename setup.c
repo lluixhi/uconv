@@ -9,11 +9,10 @@
 #define EXPBUFLEN 20
 
 /*
- * Does the legwork in adding the link into the tree.
+ * Adds link into the tree.
  */
-void
-addLink(Link* link) {
-
+void addLink(Link* link) {
+    return;
 }
 
 int
@@ -30,7 +29,7 @@ loadConf(char* fileContents) {
     int label = 0;
     int i, j;
 
-    for(i = 0; i < strlen(fileContents); i++) {
+    for(i = 0; i < (int) strlen(fileContents); i++) {
         /*
          * Check if the line starts with '\n', if so, it's the end of a
          * block, and we commit the link.
@@ -42,7 +41,6 @@ loadConf(char* fileContents) {
             link->name2 = unit2;
             link->expression = exprbuffer;
             addLink(link);
-            i++;
         }
 
         /*
@@ -51,47 +49,49 @@ loadConf(char* fileContents) {
          */
         else if(fileContents[i] == '@') {
             typeLabel = malloc(sizeof(char) * LINEMAXLEN);
-            i++;
             for(j = 0; fileContents[i] != '\n'; j++) {
-                typeLabel[i] = fileContents[i];
                 i++;
+                typeLabel[j] = fileContents[i];
             }
-            // One after '\n'
-            i++;
+            j--;
+            typeLabel[j] = 0;
         }
 
         /*
          * Finally, we catch everything else, which are normal input lines.
          */
-        else {
+
+        else{
             if(label == 0) {
                 unit1 = malloc(sizeof(char) * LINEMAXLEN);
+                for(j = 0; fileContents[i] != '\n'; j++) {
+                    unit1[j] = fileContents[i];
+                    i++;
+                }
+                unit1[j] = 0;
                 label++;
             } else if(label == 1) {
                 unit2 = malloc(sizeof(char) * LINEMAXLEN);
+                for(j = 0; fileContents[i] != '\n'; j++) {
+                    unit2[j] = fileContents[i];
+                    i++;
+                }
+                unit2[j] = 0;
                 label++;
             } else {
                 expression = malloc(sizeof(char) * LINEMAXLEN);
-            }
-
-            for(j = 0; fileContents[i] != '\n'; j++) {
-                if(label == 0) {
-                    unit1[j] = fileContents[i];
-                } else if(label == 1) {
-                    unit2[j] = fileContents[i];
-                } else {
+                for(j = 0; fileContents[i] != '\n'; j++) {
                     expression[j] = fileContents[i];
+                    i++;
                 }
-                i++;
-            }
-            // One after '\n'
-            i++;
-
-            if(label == 2) {
-                whitespaceSplit(expression, exprbuffer, EXPBUFLEN);
+                // Subtle bug in whitespace split? Last character in string cannot be 0.
+                // This is bad. REALLY BAD.
+                expression[j] = ' ';
                 label = 0;
+                exprbuffer = calloc(EXPBUFLEN, sizeof(char*));
+                whitespaceSplit(expression, exprbuffer, EXPBUFLEN);
             }
         }
     }
-    return 0;
+    return 1;
 }

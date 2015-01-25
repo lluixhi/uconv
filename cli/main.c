@@ -14,7 +14,7 @@
 void printHelp();
 char entry[BUFSIZE];
 
-int main(const int argc, const char** argv ) {
+int main() {
     /*
      * First, load the configuration file into RAM
      */
