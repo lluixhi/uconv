@@ -12,6 +12,11 @@
  * Adds link into the tree.
  */
 void addLink(Link* link) {
+    int i;
+    printf("%s\n%s\n%s\n", link->type, link->name1, link->name2);
+    for(i = 0; link->expression[i]; i++)
+        printf("%s ", link->expression[i]);
+    printf("\n\n");
     return;
 }
 
@@ -31,10 +36,18 @@ loadConf(char* fileContents) {
 
     for(i = 0; i < (int) strlen(fileContents); i++) {
         /*
+         * Check if the line starts with '#', if so, it's a comment.
+         */
+        if(fileContents[i] == '#') {
+            while(fileContents[i] != '\n')
+                i++;
+        }
+
+        /*
          * Check if the line starts with '\n', if so, it's the end of a
          * block, and we commit the link.
          */
-        if(fileContents[i] == '\n') {
+        else if(fileContents[i] == '\n') {
             link = malloc(sizeof(Link));
             link->type = typeLabel;
             link->name1 = unit1;
