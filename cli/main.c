@@ -9,7 +9,7 @@
 #include "../setup.h"
 #include "../conversion.h"
 
-#define BUFSIZE 100
+#define BUFSIZE 128
 
 void printHelp();
 char entry[BUFSIZE];

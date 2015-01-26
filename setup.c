@@ -5,8 +5,8 @@
 #include "lib/strings.h"
 #include "lib/data/link.h"
 
-#define LINEMAXLEN 40
-#define EXPBUFLEN 20
+#define LINEMAXLEN 64
+#define EXPBUFLEN 32
 
 /*
  * Adds link into the tree.
