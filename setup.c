@@ -3,22 +3,10 @@
 #include <stdlib.h>
 
 #include "lib/strings.h"
-#include "lib/data/link.h"
+#include "lib/data/btree.h"
 
 #define LINEMAXLEN 64
 #define EXPBUFLEN 32
-
-/*
- * Adds link into the tree.
- */
-void addLink(Link* link) {
-    int i;
-    printf("%s\n%s\n%s\n", link->type, link->name1, link->name2);
-    for(i = 0; link->expression[i]; i++)
-        printf("%s ", link->expression[i]);
-    printf("\n\n");
-    return;
-}
 
 int
 loadConf(char* fileContents) {
@@ -53,7 +41,8 @@ loadConf(char* fileContents) {
             link->name1 = unit1;
             link->name2 = unit2;
             link->expression = exprbuffer;
-            addLink(link);
+            link->creationFlag = 0;
+            insertLink(link);
         }
 
         /*
@@ -106,5 +95,10 @@ loadConf(char* fileContents) {
             }
         }
     }
+    return 1;
+}
+
+int
+saveConf(char* filePath) {
     return 1;
 }

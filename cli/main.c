@@ -3,7 +3,6 @@
 #include <ctype.h>
 
 #include "../lib/strings.h"
-#include "../lib/data/link.h"
 #include "../lib/file.h"
 
 #include "../setup.h"
@@ -18,7 +17,7 @@ int main() {
     /*
      * First, load the configuration file into RAM
      */
-    FILE* confFile = fopen("config","r+"); // Todo -- support config file in users' directory.
+    FILE* confFile = fopen("config","r"); // Todo -- support config file in users' directory.
     char* confFileContents = fileAsString(confFile);
 
     /*
