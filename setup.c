@@ -35,7 +35,7 @@ loadConf(char* fileContents) {
          * Check if the line starts with '\n', if so, it's the end of a
          * block, and we commit the link.
          */
-        else if(fileContents[i] == '\n') {
+        else if(fileContents[i] == '\n' || fileContents[i] == 0) {
             link = malloc(sizeof(Link));
             link->type = typeLabel;
             link->name1 = unit1;
