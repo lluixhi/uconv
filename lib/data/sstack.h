@@ -1,8 +1,8 @@
-typedef struct SStack{
-    void** Top;
-    // Private things above.
-    int PSize;
-    int LSize;
+typedef struct SStack {
+        void** Top;
+        // Private things above.
+        int PSize;
+        int LSize;
 } SStack;
 
 SStack* make_SS(int size);

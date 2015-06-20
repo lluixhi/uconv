@@ -1,6 +1,7 @@
 #include "btree.h"
 
 void
-insertLink(Link* link) {
-    return;
+insertLink(Link* link)
+{
+        return;
 }

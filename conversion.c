@@ -1,9 +1,11 @@
 #include "conversion.h"
 
-void doConversion() {
-    return;
+void doConversion()
+{
+        return;
 }
 
-void addConversion() {
+void addConversion()
+{
 
 }

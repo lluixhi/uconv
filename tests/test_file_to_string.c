@@ -3,11 +3,12 @@
 
 #include "../lib/file.h"
 
-int main(const int argc, const char** argv ) {
-    FILE* confFile = fopen("../cli/config","r+");
-    char* confFileContents = fileAsString(confFile);
+int main(const int argc, const char** argv )
+{
+        FILE* confFile = fopen("../cli/config","r+");
+        char* confFileContents = fileAsString(confFile);
 
-    printf("%s", confFileContents);
-    free(confFileContents);
-    return 0;
+        printf("%s", confFileContents);
+        free(confFileContents);
+        return 0;
 }
