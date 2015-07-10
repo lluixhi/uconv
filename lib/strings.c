@@ -3,56 +3,46 @@
 #include <ctype.h>
 
 /*
- * Returns index of first char which is not a char matching FP after startindex.
- * If it's all whitespace, return -1
+ * Functional strstr/strchr
  */
-int
-impCharInd(const char input[], int charType (int), const unsigned long startIndex)
+char* strfun(const char *input, int chartype (int))
 {
-        unsigned long i;
-        for(i = startIndex; i != strlen(input); ++i) {
-                if(!input[i])
-                        break;
-                if(!charType(input[i]))
-                        return i;
-        }
-        return -1;
+        unsigned long i, length = strlen(input);
+
+        for(i = 0; i != length && chartype(input[i]); ++i);
+        if(i == length)
+                return NULL;
+        return (char *)input + i;
 }
 
 /*
- * Convert User char[] to char*[] based on whitespace
+ * Tokenize based on function.
  */
-void
-charTypeSplit(const char input[], char** exprbuffer, int charType (int), const unsigned long exprBuffLen)
+char** tokenize(const char *input, char **buffer, int chartype (int), const unsigned long len)
 {
-        // Loop counter, substring length, and counter for exprbuffer.
-        int i, j = 0;
-        unsigned long k = 0;
-        for(i = impCharInd(input, charType, 0); i != (int) strlen(input); ++i) {
-                if(input[i] && !charType(input[i]))
-                        j++;
-                else if(j) {
-                        char *substr = malloc((j + 1) * sizeof(char));
-                        strncpy(substr, input + i - j, j);
-                        substr[j] = 0;
-                        exprbuffer[k] = substr;
-                        k++;
-                        if((i = impCharInd(input, charType, i)) == -1 || k == exprBuffLen)
-                                break;
-                        j = 1;
+        char *token, *splitter = strfun(input, chartype);
+        unsigned long i, buffi;
+
+        for(buffi = 0; buffi != len; ++buffi) {
+                if(splitter) {
+                        for(i = 0; splitter[i] && !chartype(splitter[i]); ++i);
+
+                        token = malloc(i * sizeof(char) + 1);
+                        strncpy(token, splitter, i);
+                        buffer[buffi] = token;
+                        splitter += i;
                 } else break;
+                splitter = strfun(splitter, chartype);
         }
-        return;
+        return buffer;
 }
 
-void
-whitespaceSplit(const char input[], char** exprbuffer, const unsigned long exprBuffLen)
+char** spacetokenize(const char *input, char **buffer, const unsigned long len)
 {
-        charTypeSplit(input, exprbuffer, &isspace, exprBuffLen);
-        return;
+        return tokenize(input, buffer, &isspace, len);
 }
 
-int isNewLine(int character)
+int isnewline(int character)
 {
         if(character == '\n')
                 return 1;

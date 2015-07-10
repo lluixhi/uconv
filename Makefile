@@ -1,20 +1,24 @@
 all: cli
 
-cli: libstuff.so
-	${CC} ${CFLAGS} -c conversion.c
-	${CC} ${CFLAGS} -c setup.c
+cli: conversion.o setup.o libs
 	$(MAKE) -C cli all
 
-test: libstuff.so
-	$(MAKE) -C tests all
+test: libs
+	${MAKE} -C tests all
 
-libstuff.so:
+conversion.o:
+	${CC} ${CFLAGS} -c conversion.c
+
+setup.o:
+	${CC} ${CFLAGS} -c setup.c
+
+libs:
 	${MAKE} -C lib all
 
 clean:
-	$(MAKE) -C lib clean
-	$(MAKE) -C tests clean
-	$(MAKE) -C cli clean
+	${MAKE} -C lib clean
+	${MAKE} -C tests clean
+	${MAKE} -C cli clean
 	-rm -f conversion.o setup.o
 
 cleanobj:

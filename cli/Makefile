@@ -3,7 +3,7 @@ all:
 	${CC} ${CFLAGS} -fPIE main.o ../setup.o ../conversion.o  -L../lib -lstuff -o cliconv
 
 clean:
-	$(MAKE) cleanobj
+	${MAKE} cleanobj
 	-rm -f cliconv
 
 cleanobj:
