@@ -13,7 +13,8 @@
 void printHelp();
 char entry[BUFSIZE];
 
-int main()
+int
+main(const int argc, const char **argv)
 {
         /*
          * First, load the configuration file into RAM
@@ -34,9 +35,9 @@ int main()
 whileStart:
                 printf(">> ");
                 if(fgets(entry, BUFSIZE, stdin)) {
-                        if(impCharInd(entry, &isspace, 0) == -1)
+                        if(!strfun(entry, &isspace))
                                 goto whileStart;
-                        switch(entry[impCharInd(entry, &isspace, 0)]) {
+                        switch(*strfun(entry, &isspace)) {
                         case 'q':
                                 goto exitLoop;
                         case 'c':

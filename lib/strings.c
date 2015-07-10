@@ -5,7 +5,8 @@
 /*
  * Functional strstr/strchr
  */
-char* strfun(const char *input, int chartype (int))
+char*
+strfun(const char *input, int chartype (int))
 {
         unsigned long i, length = strlen(input);
 
@@ -18,7 +19,8 @@ char* strfun(const char *input, int chartype (int))
 /*
  * Tokenize based on function.
  */
-char** tokenize(const char *input, char **buffer, int chartype (int), const unsigned long len)
+char**
+tokenize(const char *input, char **buffer, int chartype (int), const unsigned long len)
 {
         char *token, *splitter = strfun(input, chartype);
         unsigned long i, buffi;
@@ -37,12 +39,14 @@ char** tokenize(const char *input, char **buffer, int chartype (int), const unsi
         return buffer;
 }
 
-char** spacetokenize(const char *input, char **buffer, const unsigned long len)
+char**
+spacetokenize(const char *input, char **buffer, const unsigned long len)
 {
         return tokenize(input, buffer, &isspace, len);
 }
 
-int isnewline(int character)
+int
+isnewline(int character)
 {
         if(character == '\n')
                 return 1;

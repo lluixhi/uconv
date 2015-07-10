@@ -2,7 +2,8 @@
 #include <stdio.h>
 #include "../lib/data/sstack.h"
 
-int main()
+int
+main(const int argc, const char **argv)
 {
         SStack* Test2 = make_SS(3);
         double number1 = 3.0, number2 = 4.0, number3 = 5.0;

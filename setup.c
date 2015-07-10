@@ -87,20 +87,17 @@ loadConf(char* fileContents)
                                         expression[j] = fileContents[i];
                                         i++;
                                 }
-                                // Subtle bug in whitespace split? Last character in string cannot be 0.
-                                // This is bad. REALLY BAD.
-                                // expression[j] = ' ';
                                 label = 0;
                                 exprbuffer = calloc(EXPBUFLEN, sizeof(char*));
                                 spacetokenize(expression, exprbuffer, EXPBUFLEN);
                         }
                 }
         }
-        return 1;
+        return EXIT_SUCCESS;
 }
 
 int
 saveConf(char* filePath)
 {
-        return 1;
+        return EXIT_SUCCESS;
 }

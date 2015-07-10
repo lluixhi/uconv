@@ -2,7 +2,8 @@
 #include <stdio.h>
 #include "../lib/data/squeue.h"
 
-int main()
+int
+main(const int argc, const char **argv)
 {
         SQueue* Test2 = make_SQ(3);
         double number1 = 3.0, number2 = 4.0, number3 = 5.0, number4 = 6.0;

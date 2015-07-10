@@ -8,7 +8,8 @@
 #define BUFSIZE 100
 #define EXPRESSIZE 10
 
-int main(const int argc, const char** argv )
+int
+main(const int argc, const char** argv )
 {
         int i;
         char **expressionbuffer;
