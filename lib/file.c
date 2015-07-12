@@ -4,7 +4,7 @@
 char*
 fileAsString(FILE* file)
 {
-        unsigned long length;
+        unsigned int length;
         char* contents = NULL;
 
         if (file) {

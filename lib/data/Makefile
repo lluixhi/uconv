@@ -1,7 +1,6 @@
-all:
-	${CC} ${CFLAGS} -fPIC -c btree.c
-	${CC} ${CFLAGS} -fPIC -c squeue.c
-	${CC} ${CFLAGS} -fPIC -c sstack.c
+CFLAGS = -fPIC
+
+all: squeue.o sstack.o mkeyhmap.o
 
 clean:
-	-rm -f squeue.o sstack.o btree.o
+	-rm -f squeue.o sstack.o  mkeyhmap.o

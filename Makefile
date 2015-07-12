@@ -1,3 +1,5 @@
+CFLAGS = -fPIE
+
 all: cli
 
 cli: conversion.o setup.o libs
@@ -5,12 +7,6 @@ cli: conversion.o setup.o libs
 
 test: libs
 	${MAKE} -C tests all
-
-conversion.o:
-	${CC} ${CFLAGS} -c conversion.c
-
-setup.o:
-	${CC} ${CFLAGS} -c setup.c
 
 libs:
 	${MAKE} -C lib all

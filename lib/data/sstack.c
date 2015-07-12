@@ -36,7 +36,7 @@ make_SS(int size)
 void
 break_SS(SStack* Popcorn)
 {
-        while(Popcorn->LSize) {
+        for(;Popcorn->LSize;) {
                 pop_SS(Popcorn);
         }
         free(Popcorn->Top);

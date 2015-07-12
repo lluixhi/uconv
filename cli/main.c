@@ -31,12 +31,11 @@ main(const int argc, const char **argv)
         /*
          * Third, enter the main loop.
          */
-        while(1) {
-whileStart:
+        for(;;) {
                 printf(">> ");
                 if(fgets(entry, BUFSIZE, stdin)) {
                         if(!strfun(entry, &isspace))
-                                goto whileStart;
+                                continue;
                         switch(*strfun(entry, &isspace)) {
                         case 'q':
                                 goto exitLoop;

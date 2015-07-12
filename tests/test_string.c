@@ -11,17 +11,17 @@
 int
 main(const int argc, const char** argv )
 {
-        int i;
+        unsigned int i;
         char **expressionbuffer;
         char entry[BUFSIZE];
 
-        while(1) {
+        for(;;) {
                 expressionbuffer = calloc(EXPRESSIZE, sizeof(char*));
 
                 printf(">> ");
                 fgets(entry, BUFSIZE, stdin);
 
-                printf("%s\n", strfun(entry, &isspace));
+                //printf("%s\n", strfun(entry, &isspace));
 
                 spacetokenize(entry, expressionbuffer, EXPRESSIZE);
                 for(i = 0; expressionbuffer[i]; i++) {

@@ -3,27 +3,27 @@
 #include <ctype.h>
 
 /*
- * Functional strstr/strchr
+ * Functional strstr/strchr. Just does't handle nulls.
  */
 char*
 strfun(const char *input, int chartype (int))
 {
-        unsigned long i, length = strlen(input);
+        unsigned int i;
 
-        for(i = 0; i != length && chartype(input[i]); ++i);
-        if(i == length)
+        for(i = 0; input[i] && chartype(input[i]); ++i);
+        if(!input[i])
                 return NULL;
-        return (char *)input + i;
+        return (char *) input + i;
 }
 
 /*
  * Tokenize based on function.
  */
 char**
-tokenize(const char *input, char **buffer, int chartype (int), const unsigned long len)
+tokenize(const char *input, char **buffer, int chartype (int), const unsigned int len)
 {
         char *token, *splitter = strfun(input, chartype);
-        unsigned long i, buffi;
+        unsigned int i, buffi;
 
         for(buffi = 0; buffi != len; ++buffi) {
                 if(splitter) {
@@ -31,6 +31,7 @@ tokenize(const char *input, char **buffer, int chartype (int), const unsigned lo
 
                         token = malloc(i * sizeof(char) + 1);
                         strncpy(token, splitter, i);
+                        token[i] = 0;
                         buffer[buffi] = token;
                         splitter += i;
                 } else break;
@@ -40,7 +41,7 @@ tokenize(const char *input, char **buffer, int chartype (int), const unsigned lo
 }
 
 char**
-spacetokenize(const char *input, char **buffer, const unsigned long len)
+spacetokenize(const char *input, char **buffer, const unsigned int len)
 {
         return tokenize(input, buffer, &isspace, len);
 }

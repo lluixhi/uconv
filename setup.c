@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 #include "lib/strings.h"
-#include "lib/data/btree.h"
+#include "lib/data/mkeyhmap.h"
 
 #define LINEMAXLEN 64
 #define EXPBUFLEN 32
@@ -20,16 +20,15 @@ loadConf(char* fileContents)
 
         // Temporary Pieces.
         char* expression;
-        int label = 0;
-        int i, j;
+        unsigned int label = 0;
+        unsigned int i, j;
 
-        for(i = 0; i < (int) strlen(fileContents); i++) {
+        for(i = 0; i < strlen(fileContents); i++) {
                 /*
                  * Check if the line starts with '#', if so, it's a comment.
                  */
                 if(fileContents[i] == '#') {
-                        while(fileContents[i] != '\n')
-                                i++;
+                        for(; fileContents[i] != '\n'; ++i);
                 }
 
                 /*
